@@ -83,13 +83,29 @@ export const Hero: React.FC = () => {
           </div>
           
           <div className="mt-12 flex justify-center gap-6">
-            <a href={PROFILE.github} target="_blank" rel="noreferrer" className="p-3 bg-slate-800/50 rounded-full hover:bg-slate-800 hover:text-primary-400 transition-colors border border-slate-700/50">
+            <a 
+              href={PROFILE.github} 
+              target="_blank" 
+              rel="noreferrer" 
+              aria-label="GitHub Profile"
+              className="p-3 bg-slate-800/50 rounded-full hover:bg-slate-800 hover:text-primary-400 transition-colors border border-slate-700/50"
+            >
               <Github size={24} />
             </a>
-            <a href={PROFILE.linkedin} target="_blank" rel="noreferrer" className="p-3 bg-slate-800/50 rounded-full hover:bg-slate-800 hover:text-primary-400 transition-colors border border-slate-700/50">
+            <a 
+              href={PROFILE.linkedin} 
+              target="_blank" 
+              rel="noreferrer" 
+              aria-label="LinkedIn Profile"
+              className="p-3 bg-slate-800/50 rounded-full hover:bg-slate-800 hover:text-primary-400 transition-colors border border-slate-700/50"
+            >
               <Linkedin size={24} />
             </a>
-            <a href={`mailto:${PROFILE.email}`} className="p-3 bg-slate-800/50 rounded-full hover:bg-slate-800 hover:text-primary-400 transition-colors border border-slate-700/50">
+            <a 
+              href={`mailto:${PROFILE.email}`} 
+              aria-label="Send Email"
+              className="p-3 bg-slate-800/50 rounded-full hover:bg-slate-800 hover:text-primary-400 transition-colors border border-slate-700/50"
+            >
               <Mail size={24} />
             </a>
           </div>

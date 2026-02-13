@@ -8,18 +8,18 @@ export const Navbar: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  // Logic: Expand the island if we are scrolled down OR if we are on the 'projects' page
-  const isExpanded = isScrolled || location.pathname === '/projects';
+  // Logic: Expand the island if we are scrolled down OR if we are on a dedicated page
+  const isExpanded = isScrolled || ['/projects', '/about', '/contact'].includes(location.pathname);
 
   useEffect(() => {
     const handleScroll = () => {
       // 1. Detect Scroll for Expansion
       setIsScrolled(window.scrollY > 250);
 
-      // 2. Active Section Logic
+      // 2. Active Section Logic (scroll-based on home, route-based on dedicated pages)
       if (location.pathname === '/') {
         const sections = ['home', 'about', 'contact'];
-        
+
         // Check if bottom of page (for Contact)
         if ((window.innerHeight + Math.round(window.scrollY)) >= document.body.offsetHeight - 50) {
              setActiveSection('contact');
@@ -40,6 +40,10 @@ export const Navbar: React.FC = () => {
         }
       } else if (location.pathname === '/projects') {
         setActiveSection('projects');
+      } else if (location.pathname === '/about') {
+        setActiveSection('about');
+      } else if (location.pathname === '/contact') {
+        setActiveSection('contact');
       }
     };
 
@@ -70,15 +74,18 @@ export const Navbar: React.FC = () => {
     }
   }, [location]);
 
+  const pathMap: Record<string, string> = {
+    home: '/',
+    about: '/about',
+    projects: '/projects',
+    contact: '/contact',
+  };
+
   const handleNavigation = (id: string) => {
-    if (id === 'projects') {
-      navigate('/projects');
-      window.scrollTo(0, 0);
-      return;
-    }
-    if (location.pathname !== '/') {
-      navigate('/', { state: { scrollTo: id } });
-    } else {
+    const targetPath = pathMap[id] ?? '/';
+
+    // If we're on the homepage, prefer smooth-scrolling to sections when possible
+    if (location.pathname === '/') {
       const element = document.getElementById(id);
       if (element) {
         const offset = 100; // Adjusted for the floating island
@@ -86,11 +93,15 @@ export const Navbar: React.FC = () => {
         const offsetPosition = elementPosition + window.pageYOffset - offset;
         window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
         setActiveSection(id);
-      } else if (id === 'home') {
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-          setActiveSection('home');
+        return;
       }
+      // fallback to route if element not found (keeps deep links working)
+      navigate(targetPath);
+      return;
     }
+
+    // If not on home, navigate to the dedicated route
+    navigate(targetPath);
   };
 
   const navItems = [

@@ -1,5 +1,5 @@
 import React from 'react';
-import { HashRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
 import { Hero } from './components/Hero';
@@ -33,6 +33,22 @@ const ProjectsPage: React.FC = () => {
   );
 };
 
+const AboutPage: React.FC = () => {
+  return (
+    <section id="about" className="bg-gradient-to-b from-slate-900/40 via-blue-950/30 to-slate-900/40 pt-24 min-h-screen relative z-10">
+      <About />
+    </section>
+  );
+};
+
+const ContactPage: React.FC = () => {
+  return (
+    <section id="contact" className="bg-gradient-to-b from-slate-900/40 via-slate-900/40 to-transparent pt-24 min-h-screen relative z-10">
+      <Contact />
+    </section>
+  );
+};
+
 const AppContent: React.FC = () => {
   return (
     <div className="flex flex-col min-h-screen pb-24 md:pb-0 relative bg-slate-950">
@@ -41,7 +57,9 @@ const AppContent: React.FC = () => {
       <main className="flex-grow">
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/about" element={<AboutPage />} />
           <Route path="/projects" element={<ProjectsPage />} />
+          <Route path="/contact" element={<ContactPage />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </main>
@@ -52,10 +70,10 @@ const AppContent: React.FC = () => {
 
 const App: React.FC = () => {
   return (
-    <HashRouter>
+    <BrowserRouter>
       <ScrollToTop />
       <AppContent />
-    </HashRouter>
+    </BrowserRouter>
   );
 };
 
