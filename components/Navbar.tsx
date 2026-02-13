@@ -107,7 +107,7 @@ export const Navbar: React.FC = () => {
       ======================== */}
       <div className="hidden md:flex fixed top-6 left-0 right-0 justify-center z-50 pointer-events-none">
         <div 
-          className={`pointer-events-auto flex items-center bg-slate-900/60 backdrop-blur-xl border border-white/10 rounded-full shadow-2xl shadow-black/20 transition-all duration-500 ease-in-out ${
+          className={`pointer-events-auto flex items-center bg-slate-900/50 backdrop-blur-2xl border border-white/10 rounded-full shadow-2xl shadow-black/20 transition-all duration-500 ease-in-out ${
             isExpanded ? 'px-2 py-1.5 gap-4' : 'px-1.5 py-1.5 gap-2'
           }`}
         >
@@ -170,7 +170,7 @@ export const Navbar: React.FC = () => {
           isExpanded ? 'translate-y-0 opacity-100' : '-translate-y-10 opacity-0'
         }`}
       >
-          <div className="pointer-events-auto flex items-center justify-between pl-5 pr-2 py-1.5 bg-slate-900/80 backdrop-blur-xl border border-white/10 rounded-full shadow-2xl shadow-black/50">
+          <div className="pointer-events-auto flex items-center justify-between pl-5 pr-2 py-1.5 bg-slate-900/50 backdrop-blur-2xl border border-white/10 rounded-full shadow-2xl shadow-black/50">
             <span 
               onClick={() => handleNavigation('home')}
               className="text-sm font-bold bg-gradient-to-r from-primary-400 to-secondary-400 bg-clip-text text-transparent whitespace-nowrap cursor-pointer"
@@ -186,7 +186,7 @@ export const Navbar: React.FC = () => {
 
       {/* Mobile Bottom Navigation (Always there for links) */}
       <div className="md:hidden fixed bottom-4 left-1/2 transform -translate-x-1/2 z-50 w-[95%] max-w-[350px] pointer-events-none">
-        <div className="pointer-events-auto flex items-center justify-between bg-slate-900/90 backdrop-blur-xl rounded-full px-4 py-2 border border-white/10 shadow-2xl shadow-black/50">
+        <div className="pointer-events-auto flex items-center justify-between bg-slate-900/50 backdrop-blur-2xl rounded-full px-4 py-2 border border-white/10 shadow-2xl shadow-black/50">
           {navItems.map((item) => (
             <button
               key={item.name}
