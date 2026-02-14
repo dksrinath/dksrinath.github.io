@@ -1,5 +1,5 @@
-import React from 'react';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { BrowserRouter, Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
 import { Hero } from './components/Hero';
@@ -8,6 +8,21 @@ import { Projects } from './components/Projects';
 import { Contact } from './components/Contact';
 import { ScrollToTop } from './components/ScrollToTop';
 import { StarBackground } from './components/StarBackground';
+
+// GitHub Pages SPA redirect handler
+const GitHubPagesRedirect: React.FC = () => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const redirectPath = sessionStorage.getItem('redirectPath');
+    if (redirectPath) {
+      sessionStorage.removeItem('redirectPath');
+      navigate(redirectPath, { replace: true });
+    }
+  }, [navigate]);
+
+  return null;
+};
 
 const HomePage: React.FC = () => {
   return (
@@ -72,6 +87,7 @@ const App: React.FC = () => {
   return (
     <BrowserRouter>
       <ScrollToTop />
+      <GitHubPagesRedirect />
       <AppContent />
     </BrowserRouter>
   );

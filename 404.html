@@ -34,11 +34,11 @@
   </head>
   <body>
     <div id="root"></div>
-    <script type="module" src="/index.tsx"></script>
     <script>
-      // GitHub Pages SPA fallback: if a route 404s, load index and let the app handle routing
-      // This file is a copy of index.html so unknown paths return the app bundle.
-      // No-op here — index bundles are already included above.
+      // GitHub Pages SPA fallback: Save the path before redirecting to index
+      // Store the requested path so React Router can navigate to it
+      sessionStorage.setItem('redirectPath', location.pathname + location.search + location.hash);
     </script>
+    <script type="module" src="/index.tsx"></script>
   </body>
 </html>
